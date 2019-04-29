@@ -42,5 +42,10 @@ def list(n):
     return render_template('list.html', n=range(1, n + 1))
 
 
+@app.route('/table/<int:n>/<int:m>')
+def table(n, m):
+    return render_template('table.html', n=range(1, n + 1), m=range(1, m + 1))
+
+
 if __name__ == '__main__':
     app.run(port=8011, host='127.0.0.1')
