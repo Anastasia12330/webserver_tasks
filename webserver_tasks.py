@@ -168,5 +168,13 @@ def odd_even():
             return request.form['n'] + ' не является корректным целым числом!'
 
 
+@app.route('/greeting_form', methods=['POST', 'GET'])
+def greet():
+    if request.method == 'GET':
+        return render_template('greeting.html')
+    elif request.method == 'POST':
+        return 'Привет, ' + request.form['name']
+
+
 if __name__ == '__main__':
     app.run(port=8011, host='127.0.0.1')
