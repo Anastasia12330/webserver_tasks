@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+     <title>YouTube</title>
+</head>
+  <body>
+    <main role="main" class="container">
+        {% if n < 6 %}
+            {% for name in clips %}
+                 <iframe width="854" height="480" src={{name}} frameborder="0" allowfullscreen></iframe>
+            {% endfor %}
+        {% else %}
+            <h1>Error! Please enter a number less than six.</h1>
+        {% endif %}
+    </main>
+  </body>
+</html>

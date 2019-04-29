@@ -47,5 +47,13 @@ def table(n, m):
     return render_template('table.html', n=range(1, n + 1), m=range(1, m + 1))
 
 
+@app.route('/youtube/<int:n>')
+def youtube(n):
+    clips = ['https://www.youtube.com/embed/sU36sIJ31iA', 'https://www.youtube.com/embed/vR5ykbDSV-4',
+              'https://www.youtube.com/embed/Htd_2MfQhLA', 'https://www.youtube.com/embed/Q2wWiAvRgvc',
+              'https://www.youtube.com/embed/2wsVEBPAnRM']
+    return render_template('youtube.html', n=n, clips=clips[:n])
+
+
 if __name__ == '__main__':
     app.run(port=8011, host='127.0.0.1')
