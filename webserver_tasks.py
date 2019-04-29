@@ -31,9 +31,15 @@ def alert(words):
 def bootstrap():
     return render_template('bootstrap.html')
 
+
 @app.route('/yandex_music')
 def yandex_music():
     return render_template('yandex_music.html')
+
+
+@app.route('/list/<int:n>')
+def list(n):
+    return render_template('list.html', n=range(1, n + 1))
 
 
 if __name__ == '__main__':
