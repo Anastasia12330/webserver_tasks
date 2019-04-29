@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
 @app.route('/')
@@ -154,6 +155,17 @@ def sample_file_upload():
         with open('form.txt', 'w') as form:
             form.write(f.read().decode('utf-8'))
         return "Форма отправлена"
+
+
+@app.route('/odd_even', methods=['POST', 'GET'])
+def odd_even():
+    if request.method == 'GET':
+        return render_template('form_for_odd_even.html')
+    elif request.method == 'POST':
+        try:
+            return render_template('odd_even.html', n=int(request.form['n']))
+        except ValueError:
+            return request.form['n'] + ' не является корректным целым числом!'
 
 
 if __name__ == '__main__':
