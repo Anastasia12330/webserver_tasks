@@ -31,6 +31,10 @@ def alert(words):
 def bootstrap():
     return render_template('bootstrap.html')
 
+@app.route('/yandex_music')
+def yandex_music():
+    return render_template('yandex_music.html')
+
 
 if __name__ == '__main__':
     app.run(port=8011, host='127.0.0.1')
