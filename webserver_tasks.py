@@ -1,4 +1,4 @@
-from flask import Flask, url_for
+from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
 
@@ -27,5 +27,10 @@ def alert(words):
     '''
 
 
+@app.route('/bootstrap_sample')
+def bootstrap():
+    return render_template('bootstrap.html')
+
+
 if __name__ == '__main__':
-    app.run(port=8010, host='127.0.0.1')
+    app.run(port=8011, host='127.0.0.1')
