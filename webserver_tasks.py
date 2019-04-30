@@ -1,4 +1,5 @@
 from flask import Flask, render_template, url_for, request
+import json
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -179,6 +180,14 @@ def greet():
 @app.route('/image_puzzle/<int:n>')
 def image_puzzle(n):
     return render_template('image_puzzle.html', n=n)
+
+
+@app.route('/news')
+def news():
+    with open("news.json", "rt") as f:
+        news_list = json.loads(f.read())
+    print(news_list)
+    return render_template('news.html', news=news_list, title="Новости")
 
 
 if __name__ == '__main__':
