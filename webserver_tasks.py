@@ -214,5 +214,18 @@ def login():
     return render_template('login.html', title='Login', form=form)
 
 
+@app.route('/div_mod', methods=['POST', 'GET'])
+def div_mod():
+    if request.method == 'GET':
+        return render_template('div_mod.html', title="Divide")
+    elif request.method == 'POST':
+        try:
+            return str(not int(request.form['n1']) % int(request.form['n2']))
+        except ZeroDivisionError:
+            return 'На ноль делить нельзя!'
+        except ValueError:
+            return request.form['n1'] + ' или ' + request.form['n2'] + ' не является корректным целым числом.'
+
+
 if __name__ == '__main__':
     app.run(port=8011, host='127.0.0.1')
