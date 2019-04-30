@@ -176,5 +176,10 @@ def greet():
         return 'Привет, ' + request.form['name']
 
 
+@app.route('/image_puzzle/<int:n>')
+def image_puzzle(n):
+    return render_template('image_puzzle.html', n=n)
+
+
 if __name__ == '__main__':
     app.run(port=8011, host='127.0.0.1')
