@@ -1,8 +1,17 @@
 from flask import Flask, render_template, url_for, request
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired
 import json
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+
+
+class LoginForm(FlaskForm):
+    username = StringField('Логин', validators=[DataRequired()])
+    password = PasswordField('Пароль', validators=[DataRequired()])
+    submit = SubmitField('Войти')
 
 
 @app.route('/')
@@ -188,6 +197,21 @@ def news():
         news_list = json.loads(f.read())
     print(news_list)
     return render_template('news.html', news=news_list, title="Новости")
+
+
+with open("logins.json", "rt", encoding="utf8") as f:
+    users = json.loads(f.read())['users']
+
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        if {'login': request.form['username'], 'password': request.form['password']} in users:
+            return 'Hello. You have successfully logged in.'
+        else:
+            return 'Something went wrong. Please, enter the correct username and password.'
+    return render_template('login.html', title='Login', form=form)
 
 
 if __name__ == '__main__':
